@@ -1,9 +1,7 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useReducer } from 'react'
 
 import Header from './staticcomponent/Header'
 import Main from './Main'
-import Loader from './staticcomponent/Loader'
-import Error from './staticcomponent/Error'
 import StartScreen from './StartScreen'
 import Question from './Question'
 import NextButton from './NextButton'
@@ -11,24 +9,34 @@ import Progress from './Progress'
 import FinishScreen from './FinishScreen'
 import Footer from './staticcomponent/Footer'
 import Timer from './Timer'
+import QuizUi from './staticcomponent/QuizUi'
 
-// status : 'loading' , 'errror' , 'ready' , 'active' , 'finished'
+// status :''initial' , 'errror' , 'ready' , 'active' , 'finished'
 const initialState = {
   questions: [],
-  status: 'loading',
+  status: 'initial',
   index: 0,
   answer: null,
   points: 0,
-  secondsRemaining : null
+  secondsRemaining: null,
+  subject: null
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'dataRecieved':
+      let course = (subArr) => {
+        if (subArr[0].question.includes("What is the purpose")) {
+          return "JavaScript"
+        } else {
+          return "react"
+        }
+      }
       return {
         ...state,
         questions: action.payload,
-        status: 'ready'
+        status: 'ready',
+        subject: course(action.payload)
       }
     case 'dataFailed':
       return {
@@ -79,26 +87,22 @@ function reducer(state, action) {
 
 const App = () => {
 
+
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { status, questions, index, answer, points , secondsRemaining } = state;
+  const { status, questions, index, answer, points, secondsRemaining, subject } = state;
 
   const numOfQuestions = questions.length;
   const maxPossiblePoints = questions.reduce((prev, curr) => prev + curr.points, 0);
 
-  useEffect(() => {
-    fetch("https://fakequizapi.onrender.com/questions")
-      .then(res => res.json())
-      .then(data => dispatch({ type: 'dataRecieved', payload: data }))
-      .catch(err => dispatch({ type: 'dataFailed' }))
-  }, [])
+
+
 
   return (
     <div className='app'>
       <Header />
       <Main>
-        {status === 'loading' && <Loader />}
-        {status === 'error' && <Error />}
-        {status === 'ready' && <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} />}
+        {status === 'initial' && <QuizUi dispatch={dispatch} />}
+        {status === 'ready' && <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} subject={subject} />}
         {status === 'active' && (
             <>
               <Progress index={index} numOfQuestions={numOfQuestions} points={points} maxPossiblePoints={maxPossiblePoints} />

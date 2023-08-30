@@ -2,7 +2,6 @@ import React from 'react'
 import Option from './Option'
 
 const Question = ({ question, dispatch, answer }) => {
-  
   return (
     <div>
       <h4>{question.question}</h4>

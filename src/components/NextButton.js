@@ -14,4 +14,4 @@ const NextButton = ({ dispatch, answer, index, numOfQuestions }) => {
     }
 }
 
-export default NextButton
+export default NextButton;

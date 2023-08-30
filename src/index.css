@@ -41,7 +41,7 @@ body {
 }
 
 .app-header {
-  width: 66rem;
+  /* width: 66rem; */
   margin-bottom: 4rem;
   display: flex;
   align-items: center;
@@ -58,12 +58,12 @@ body {
 }
 
 img {
-  width: 14rem;
+  width: 7rem;
 }
 
 h1 {
   font-family: "Codystar";
-  font-size: 5.6rem;
+  font-size: 3rem;
 }
 
 h2 {
@@ -83,10 +83,22 @@ h4 {
   margin-bottom: 2.4rem;
 }
 
-.start {
+
+
+.skill-sec{
+  border: 1px solid #fff;
+  min-width: 350px;
+  /* width: 300px; */
+  padding: 70px;
+  border-radius: 20px;
+  /* margin-bottom: 10px; */
+}
+.skill-btns{
+  border: 1px solid #fff;
+  padding: 20px 0px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  border-radius: 20px;
 }
 
 .progress {
