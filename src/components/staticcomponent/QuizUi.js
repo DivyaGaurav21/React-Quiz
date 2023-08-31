@@ -14,7 +14,7 @@ const QuizUi = ({ dispatch }) => {
     );
 
     return (
-        <div className='skill-btns'>
+        <div className='border border-white p-5 flex justify-around rounded-lg '>
             {(reactError || javascriptError) && <Error />}
             {(reactLoading || javascriptLoading) ? <Loader /> : <>
                 <button onClick={() => dispatch({ type: 'dataRecieved', payload: reactData })} className='btn'>REACT</button>

@@ -98,7 +98,7 @@ const App = () => {
 
 
   return (
-    <div className='app'>
+    <div className='flex flex-col items-center justify-center'>
       <Header />
       <Main>
         {status === 'initial' && <QuizUi dispatch={dispatch} />}
