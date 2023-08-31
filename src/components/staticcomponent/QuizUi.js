@@ -2,6 +2,7 @@ import React from 'react'
 import useDataFetch from '../useDataFetch'
 import Loader from './Loader';
 import Error from './Error'
+import img from '../../assets/quiz.png'
 
 const QuizUi = ({ dispatch }) => {
 
@@ -14,6 +15,7 @@ const QuizUi = ({ dispatch }) => {
     );
 
     return (
+        <>
         <div className='border border-white p-5 flex justify-around rounded-lg '>
             {(reactError || javascriptError) && <Error />}
             {(reactLoading || javascriptLoading) ? <Loader /> : <>
@@ -21,6 +23,8 @@ const QuizUi = ({ dispatch }) => {
                 <button onClick={() => dispatch({ type: 'dataRecieved', payload: javascriptData })} className='btn'>JAVASCRIPT</button>
             </>}
         </div>
+            <img src={img} alt='quiz_img' className='w-[100%] mt-9' />
+        </>
     )
 }
 

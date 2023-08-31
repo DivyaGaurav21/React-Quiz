@@ -21,7 +21,7 @@ root.render(
         <Route index element={<App />} />
         <Route path='home' element={<App />} />
         <Route path="react" element={<ReactPage />} />
-        <Route path="js" element={<JsPage />} />
+        <Route path="javascript" element={<JsPage />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
       </Routes>
